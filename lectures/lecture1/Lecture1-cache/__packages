@@ -1,0 +1,15 @@
+base
+knitr
+BiocGenerics
+S4Vectors
+IRanges
+GenomeInfoDb
+GenomicRanges
+Biobase
+matrixStats
+DelayedArray
+SummarizedExperiment
+DESeq2
+pheatmap
+viridisLite
+viridis

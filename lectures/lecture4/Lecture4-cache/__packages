@@ -1,0 +1,15 @@
+base
+knitr
+ggplot2
+ggthemes
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+ggridges
+foreach
+RColorBrewer

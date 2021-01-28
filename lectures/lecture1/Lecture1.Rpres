@@ -1,0 +1,210 @@
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+
+.smaller-code pre code {
+  font-size: 14px;
+}
+
+</style>
+
+Lecture 1 Course Overview & GENAVi
+========================================================
+author: Dennis Hazelett
+date: 5/5/2020
+autosize: true
+transition: fade
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+library(DESeq2)
+library(pheatmap)
+library(viridis)
+```
+
+Introduction
+========================================================
+
+Course Goals
+
+- Learn a common bioinformatics pipeline (RNA-seq expression profiling)
+- Know how to conduct and interpret common analyses associated with this kind of data
+- Gain an understanding of next-generation sequencing (NGS) technology
+
+Course Structure
+========================================================
+
+We will spend 6 weeks exploring a single big dataset
+
+- Real world analyses take months to complete
+- Want to maximize familiarity with the data so we can focus on elements of the pipeline
+- The more you look, the more you see
+- Minimize time wasted on munging new datasets
+- Go beyond superficial understanding of NGS data
+
+The DATA
+========================================================
+class: small-code
+
+ENCODE PROJECT (Michael Snyder's lab)
+
+- 168 CRISPRi experiments (including controls)
+- CRISPRi knockdown of individual *T*ranscription *F*actors (TFs)
+- 74 individual TFs, 2 replicates each, 7 batches
+
+```{r, echo=FALSE}
+setwd('~/repos/hgg_2020/')
+cfc <- read.csv("data/combinedfeatcounts.csv", row.names = 1, header = TRUE)
+replicate_model <- read.csv("data/crispri_modelmatrix.csv", row.names = 1, header = TRUE)
+cfc[1:15, 1:4]
+```
+
+The DATA
+========================================================
+class: small-code
+
+ENCODE PROJECT (Michael Snyder's lab)
+
+- 168 CRISPRi experiments (including controls)
+- CRISPRi knockdown of individual *T*ranscription *F*actors (TFs)
+- 74 individual TFs, 2 replicates each, 7 batches
+
+```{r, echo=FALSE}
+setwd('~/repos/hgg_2020/')
+replicate_model <- read.csv("data/crispri_modelmatrix.csv", row.names = 1, header = TRUE)
+replicate_model[1:15,]
+```
+
+The Method
+========================================================
+
+Why GENAVi?
+- emphasize practical skills
+- de-emphasize programming skills
+
+"What if I am already a cloud-computing ML jockey?"
+- GENAVi not required
+- There is some value to learning GENAVi, _e.g._ teach DEA to non-computer savvy colleagues
+- Engage with course instructers on more interesting problems
+
+Attendance & Homework Expectations
+========================================================
+* To receive credit for this course **_you must attend every lecture_**
+  * exeptions: absences excused by graduate school and untimely death
+  
+* Homework is due on the date listed on the syllabus, but can be turned in no more than **_1 lecture later_** for a maximum of 50% credit.
+
+Syllabus
+========================================================
+* Today (5/5) **Installing GENAVi**
+* 5/7 **Differential Gene Expression (DGE)**
+* 5/14 **Exporatory Analysis**
+* 5/21 **Gene Ontology Analysis**
+* 5/28 **NGS & File Formats**
+* 6/4 **Gathering and interpreting quality control (QC) metrics**
+
+Schedule
+========================================================
+
+| day | date  | lecture   | hmwk | due  |
+| :-- | :---- | :-------- | :--- | :--- |
+| Tue | 05/05 | Intro     | L1   |      |
+| Thu | 05/07 | DGE       | L2   | L1   |
+| Tue | 05/12 | Wkshp     |      | L2   |
+| Thu | 05/14 | Expl Anls | L3   |      |
+| Tue | 05/19 | Review    |      | L3   |
+| Thu | 05/21 | GO Anls   | L4   |      |
+| Tue | 05/26 | Wkshp     |      | L4   |
+| Thu | 05/28 | Formats   | QS5  |      |
+| Tue | 06/02 | Wkshp     |      | QS5  |
+| Thu | 06/04 | MultiQC   | QS5  |      |
+| Tue | 06/09 | Review    |      | QS6  |
+| Thu | 06/11 | Exam      |      | E1   |
+
+Grading
+========================================================
+
+- 4 labs (10s pt each)
+- 2 question sets (10 pts each)
+- 1 oral presentation (10 pts)
+- 1 final exam (30 pts)
+
+```{r grading, echo = TRUE}
+4 * 10 + 2 * 10 + 10 + 30
+```
+
+Oral Presentations
+========================================================
+
+- does not include the first assignment
+- 5-10 minutes 
+- "lab meeting style" show graphs, discuss conclusions, challenges
+- volunteer on the day of; 3 opportunities 5/12, 5/19, 5/26
+- 2 to 3 people during each workshop
+
+Course Materials
+========================================================
+* All course materials available via:
+* GitHub: dennishazelett/hgg_2020
+* Box: Bioinformatics2020 (just a copy of the working tree in the git repo)
+
+Includes:
+- lecture slides
+- homework & question sets
+- all code
+- reading assignments
+
+Let's look at some data
+========================================================
+class: small-code
+
+```{r unique-tfs, echo=TRUE}
+unique(replicate_model$treatment)
+```
+
+Global overview
+========================================================
+class: smaller-code
+
+```{r clustered-crispri, echo=FALSE}
+setwd('~/repos/hgg_2020/')
+# create the data set
+cfc_de <- DESeqDataSetFromMatrix(
+  countData = cfc[, rownames(replicate_model)],
+  colData = replicate_model, 
+  design = ~treatment)
+# calculate scale factor for samples
+cfc_de <- estimateSizeFactors(cfc_de)
+# calculate log counts - variance stabilizing transformation 
+cfc_de_vsd <- vst(cfc_de)
+# only look at genes that have been knocked down
+plot_matrix <- assay(cfc_de_vsd)[names(cfc_de_vsd) %in% replicate_model$crispri_geneid,]
+colnames(plot_matrix) <- replicate_model[colnames(plot_matrix), ]$treatment
+rownames(plot_matrix) <- replicate_model[match(rownames(plot_matrix), replicate_model$crispri_geneid), ]$treatment
+plot_matrix[1:10, 1:10]
+save(plot_matrix, file = file.path("~/repos/hgg_2020/data/plot_matrix.Rda"))
+```
+
+Global overview plot
+========================================================
+class: small-code
+
+```{r clustered-crispri-plot, fig.ext = "png", out.width = '90%', fig.width = 20, fig.asp = 2/5, fig.align = 'center'}
+pheatmap(plot_matrix, 
+         color = viridis(100), 
+         clustering_distance_cols = "correlation",
+         clustering_distance_rows = "euclidean",
+         scale = "row")
+```
+
+Ordered TFs
+========================================================
+class: small-code
+
+```{r ordered_crispri-plot, fig.ext = "png", out.width = '90%', fig.width = 20, fig.asp = 2/5, fig.align = 'center'}
+pheatmap(plot_matrix[order(match(rownames(plot_matrix), colnames(plot_matrix))), ], 
+         color = viridis(100), 
+         cluster_rows = FALSE,
+         cluster_cols = FALSE,
+         scale = "row")
+```
