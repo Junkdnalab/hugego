@@ -5,9 +5,9 @@ S4Vectors
 IRanges
 GenomeInfoDb
 GenomicRanges
-Biobase
 matrixStats
-DelayedArray
+MatrixGenerics
+Biobase
 SummarizedExperiment
 DESeq2
 pheatmap

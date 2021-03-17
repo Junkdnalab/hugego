@@ -12,7 +12,7 @@
 Lecture 1 Course Overview & GENAVi
 ========================================================
 author: Dennis Hazelett
-date: 5/5/2020
+date: 3/23/2021
 autosize: true
 transition: fade
 
@@ -105,7 +105,6 @@ Why GENAVi?
 - de-emphasize programming skills
 
 "What if I am already a cloud-computing ML jockey?"
-- GENAVi not required
 - There is some value to learning GENAVi, _e.g._ teach DEA to non-computer savvy colleagues
 - Engage with course instructers on more interesting problems
 
@@ -116,32 +115,30 @@ Attendance & Homework Expectations
   
 * Homework is due on the date listed on the syllabus, but can be turned in no more than **_1 lecture later_** for a maximum of 50% credit.
 
-Syllabus
+Syllabus Topics
 ========================================================
-* Today (5/5) **Installing GENAVi**
-* 5/7 **Differential Gene Expression (DGE)**
-* 5/14 **Exporatory Analysis**
-* 5/21 **Gene Ontology Analysis**
-* 5/28 **NGS & File Formats**
-* 6/4 **Gathering and interpreting quality control (QC) metrics**
+* Today (3/23) **Installing GENAVi**
+* 3/25 **Differential Gene Expression (DGE)**
+* 4/1  **Exporatory Analysis**
+* 4/6 **Gene Ontology Analysis**
+* 4/13 **NGS & File Formats**
+* 4/15 **Gathering and interpreting quality control (QC) metrics**
 
 Schedule
 ========================================================
 
-| day | date  | lecture   | hmwk | due  |
-| :-- | :---- | :-------- | :--- | :--- |
-| Tue | 05/05 | Intro     | L1   |      |
-| Thu | 05/07 | DGE       | L2   | L1   |
-| Tue | 05/12 | Wkshp     |      | L2   |
-| Thu | 05/14 | Expl Anls | L3   |      |
-| Tue | 05/19 | Review    |      | L3   |
-| Thu | 05/21 | GO Anls   | L4   |      |
-| Tue | 05/26 | Wkshp     |      | L4   |
-| Thu | 05/28 | Formats   | QS5  |      |
-| Tue | 06/02 | Wkshp     |      | QS5  |
-| Thu | 06/04 | MultiQC   | QS5  |      |
-| Tue | 06/09 | Review    |      | QS6  |
-| Thu | 06/11 | Exam      |      | E1   |
+| day | date  | lecture   | hmwk (pts) | due  |
+| :-- | :---- | :-------- | :--------- | :--- |
+| Tue | 03/23 | Intro     | L1 (10)    |      |
+| Thu | 03/25 | DGE       | L2 (10)    | L1   |
+| Tue | 03/30 | Wkshp     | -          | L2   |
+| Thu | 04/01 | Expl Anls | L3 (10)    |      |
+| Tue | 04/06 | GO Anls   | L4 (10)    | L3   |
+| Thu | 04/08 | Wkshp     | -          | L4   |
+| Tue | 04/13 | Formats   | QS5 (10)   |      |
+| Thu | 04/15 | MultiQC   | QS6 (10)   | QS5  |
+| Tue | 04/20 | Review    | -          | QS6  |
+| Thu | 04/22 | Exam      | E1 (30)    | E1   |
 
 Grading
 ========================================================
@@ -166,14 +163,14 @@ Oral Presentations
 - does not include the first assignment
 - 5-10 minutes 
 - "lab meeting style" show graphs, discuss conclusions, challenges
-- volunteer on the day of; 3 opportunities 5/12, 5/19, 5/26
-- 2 to 3 people during each workshop
+- sign up now! 4 opportunities 3/25, 3/30, 4/6, 4/8
+- up to 2 people during each workshop
 
 Course Materials
 ========================================================
 * All course materials available via:
-* GitHub: dennishazelett/hgg_2020
-* Box: Bioinformatics2020 (just a copy of the working tree in the git repo)
+* GitHub: orgs/Junkdnalab/hugego
+* Box: Bioinformatics2021
 
 Includes:
 - lecture slides
@@ -241,6 +238,9 @@ ZC3H11A       13.268714       13.354711 14.408988 14.445624 13.340079 13.689900
 ATF3           9.318656        9.044274  9.772777  9.861096  9.892308  9.824920
 DLX1           9.156243        8.874036  9.568087 10.029173  9.796645  9.795714
 ```
+
+
+
 
 Global overview plot
 ========================================================
