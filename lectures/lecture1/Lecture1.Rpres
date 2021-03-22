@@ -37,7 +37,7 @@ Course Structure
 We will spend 6 weeks exploring a single big dataset
 
 - Real world analyses take months to complete
-- Want to maximize familiarity with the data so we can focus on elements of the pipeline
+- Maximize familiarity with the data, focus on pipeline
 - The more you look, the more you see
 - Minimize time wasted on munging new datasets
 - Go beyond superficial understanding of NGS data
@@ -80,16 +80,16 @@ The Method
 
 Why GENAVi?
 - emphasize practical skills
-- de-emphasize programming skills
+- de-emphasizes programming skills
 
 "What if I am already a cloud-computing ML jockey?"
-- There is some value to learning GENAVi, _e.g._ teach DEA to non-computer savvy colleagues
-- Engage with course instructers on more interesting problems
+- There is some value to learning GENAVi, _e.g._ teaching DEA to non-computer savvy colleagues
+- Engage with course instructors on more interesting problems
 
 Attendance & Homework Expectations
 ========================================================
 * To receive credit for this course **_you must attend every lecture_**
-  * exeptions: absences excused by graduate school and untimely death
+  * exceptions: absences excused by graduate school or untimely death
   
 * Homework is due on the date listed on the syllabus, but can be turned in no more than **_1 lecture later_** for a maximum of 50% credit.
 
@@ -97,7 +97,7 @@ Syllabus Topics
 ========================================================
 * Today (3/23) **Installing GENAVi**
 * 3/25 **Differential Gene Expression (DGE)**
-* 4/1  **Exporatory Analysis**
+* 4/1  **Exploratory Analysis**
 * 4/6 **Gene Ontology Analysis**
 * 4/13 **NGS & File Formats**
 * 4/15 **Gathering and interpreting quality control (QC) metrics**
@@ -133,8 +133,7 @@ Grading
 Oral Presentations
 ========================================================
 
-- does not include the first assignment
-- 5-10 minutes 
+- first assignment is exempt
 - "lab meeting style" show graphs, discuss conclusions, challenges
 - sign up now! 4 opportunities 3/25, 3/30, 4/6, 4/8
 - up to 2 people during each workshop
@@ -142,8 +141,7 @@ Oral Presentations
 Course Materials
 ========================================================
 * All course materials available via:
-* GitHub: orgs/Junkdnalab/hugego
-* Box: Bioinformatics2021
+* Box: "Bioinformatics 2021"
 
 Includes:
 - lecture slides
