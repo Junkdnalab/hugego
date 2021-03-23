@@ -1,11 +1,15 @@
 ---
 title: 'Lab Assignment I: Install GENAVi'
 output:
-  pdf_document: default
   html_document:
     df_print: paged
-date: "due April 25, 2021"
+  pdf_document: default
+date: "due March 25, 2021"
 ---
+
+Name:
+
+## My Name
 
 ```{r setup, include=FALSE}
 Sys.getenv("HOME") # see where your home directory is
