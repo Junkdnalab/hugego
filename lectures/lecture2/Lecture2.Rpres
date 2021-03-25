@@ -1,10 +1,11 @@
 Lecture 2 Differential Expression Analysis (DEA)
 ========================================================
 author: Dennis Hazelett
-date: 5/7/2020
+date: 3/25/2021
 autosize: true
 transition: fade
 ```{r setup, include=FALSE}
+library(knitr)
 opts_chunk$set(cache=TRUE)
 ```
 
@@ -18,7 +19,7 @@ _<blockquote>Systems biology is an approach in biomedical research to understand
 --Christophe Wanjek ([NIH website](https://irp.nih.gov/catalyst/v19i6/systems-biology-as-defined-by-nih))
 
 - avoid drawing strong conclusions from individual genes
-- support conclusions from other types of experiments
+- support inference drawn from other experiments
 - look at groups or clusters of related genes
 - same laws of statistics, physics and chemistry apply 
 
@@ -79,7 +80,7 @@ Types of normalization
 
 - Counts per million (CPM)
 - Scale, median and mean
-- Trimmed mean of M-values (TMM/edgeR)
+- [Trimmed mean of M-values](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-3-r25) (TMM/edgeR)
 - Transcripts per million (TPM - Salmon)
 
 

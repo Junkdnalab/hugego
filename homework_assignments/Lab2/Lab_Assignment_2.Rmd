@@ -3,7 +3,7 @@ title: 'Lab Assignment II: DEA with GENAVi'
 output: 
   html_document:
     df_print: paged
-date: "due May 12, 2020"
+date: "due March 30, 2020"
 ---
 
 ```{r setup, include=FALSE}

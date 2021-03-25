@@ -54,7 +54,7 @@ and is available as an [installable R package via
 GitHub](https://github.com/alpreyes/GENAVi). It is not necessary to know how to
 use git for this excercise, but it is strongly encouraged for you to [learn
 github on your own](https://www.coursera.org/learn/version-control-with-git) if
-you plan to use bioinformatics analysis for your thesis work.
+you plan to use bioinformatics analysis as part of your thesis work.
 
 ```{r run-genavi, echo=TRUE, results='hide', eval=FALSE}
 shiny::runGitHub("alpreyes/GENAVi")
@@ -117,8 +117,8 @@ metadat <- read.csv(
   header = TRUE,
   stringsAsFactors = FALSE)
 
-## Inspect the TEAD2 samples in the metadata file:
-knitr::kable(subset(metadat, treatment == 'TEAD2'))
+## Inspect the NFE2L1 samples in the metadata file:
+knitr::kable(subset(metadat, treatment == 'NFE2L1'))
 ```
 
 Notice that there are two replicates for this experiment in two different batches. 
