@@ -16,7 +16,7 @@ knitr::opts_chunk$set(root.dir = course_directory)
 
 ## Objective
 
-In this lab we are going to try some of the exploratory analysis and PCA we discussed during lecture 3. This homework is an R notebook in .Rmd format, so you can alter the code as necessary. Answers can be entered directly where indicated.
+In this lab we are going to try some of the exploratory analysis and PCA we discussed during lecture 3. This homework is an R notebook in .Rmd format, so you can alter the code as necessary. Answers can be entered directly where indicated. There are 5 exercises, and each exercise will be weighted equally, worth 2.0 points.
 
 ### Exercise 1: 
 
@@ -70,7 +70,7 @@ Next let's look at your DEA results from the previous assignment. You should hav
 
 ```{r upload-dea-result, echo=TRUE}
 dea <- read.csv(file = file.path(course_directory, "data", "treatment_TEAD2_vs_CRISPRi_CONTROL.csv"))
-knitr::kable(head(dea[order(dea$padj),], n=50))
+knitr::kable(head(dea[order(dea$padj),], n=20))
 ```
 
 1. Using whatever method you're most comfortable with (base graphics or ggplot), generate an M-A plot using your dea set from GENAVi:
@@ -177,6 +177,10 @@ Replace this text with your answer
 </b></i></span>
 
 2. Is there a relationship between PCA analysis and t-SNE? What problem does PCA present that methods like t-SNE and a related procedure called UMAP potentially solve?
+
+<span style="color:#31a354"><i><b>
+Replace this text with your answer
+</b></i></span>
 
 ## Exercise 5 (for Kate's lecture)
 
