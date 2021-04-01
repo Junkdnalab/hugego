@@ -3,12 +3,12 @@ title: 'Assignment 3: Exploratory analysis and PCA'
 output:
   html_document:
     df_print: paged
-date: "due May 19, 2020"
+date: "due April 6, 2021"
 ---
 
 ```{r setup, include=FALSE}
 Sys.getenv("HOME") # see where your home directory is
-course_directory <- file.path(Sys.getenv("HOME"), "repos", "hgg_2020")
+course_directory <- file.path(Sys.getenv("HOME"), "repos", "hugego")
 course_directory # double check what you set your course_directory to
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(root.dir = course_directory)
@@ -23,9 +23,9 @@ In this lab we are going to try some of the exploratory analysis and PCA we disc
 First, let's read in our feature counts:
 
 ```{r read-in, echo=TRUE}
-# don't forget to change the variable names so they don't invoke the example, TEAD2
+# don't forget to change the variable and file names to reflect your TF choice!!!
 tead2counts <- read.csv(
-  file = file.path(course_directory, "data", "teadfeatcounts.csv"), 
+  file = file.path(course_directory, "data", "TEAD2featcounts.csv"), 
   stringsAsFactors = FALSE,
   row.names = 1) # alter file path as needed
 ```
@@ -33,7 +33,7 @@ tead2counts <- read.csv(
 Using base graphics in R, visualize the distribution of counts from column 1 as a density plot:
 
 ```{r density-col-1, echo=TRUE}
-plot(density(tead2counts[,1]))
+plot(density(tead2counts[,1])) # change the object/matrix name as appropriate!
 ```
 
 Use the ``points`` function to add the second pair of replicates to this graph (pick a different color, obviously!). Note the arguments list is identical to the scatterplot referenced by the base ``plot`` function:
@@ -47,35 +47,33 @@ plot(x = log2(tead2counts[,1]), y = log2(tead2counts[,3]), col = rgb(1, .4, 0, a
 # points() # <-- add your code here
 ```
 
-Use the ggridges library of ggplot to display the distributions simultaneously as density plots:
+`ggridges` is a library that allows visualization of stacked kernel density histograms like the ones we used in today's lecture. Use the ggridges library of ggplot to display the distributions of your samples simultaneously as density plots. If your graphing code isn't working, try removing successive ggplot statements until it does, then read the error messages as you add them back in. (Hint: you may need to use a "pseudocount" for the log scale to work):
 
-```{r rnaseq-density-plots}
+```{r rnaseq-density-plots, eval=FALSE}
+### remove the eval flag for compile
 ### Install ggridges, if necessary:
 ### BiocManager::install("ggridges")
 library(ggridges)
 library(tidyverse)
 
-distr_plot <- ggplot(gather(tead2counts, key = "sample_id", value = "expression")) # +
-#   geom_density_ridges(aes()) + ## needs aes() args
-#   scale_x_log10() ## etc
+graphdat <- gather(tead2counts, key = "sample_id", value = "expression")
+distr_plot <- ggplot(graphdat) +
+  geom_density_ridges(aes(...)) + ## needs aes() args
+  scale_x_log10() ## etc
 
 distr_plot
 ```
 
 ## Exercise 2: the M-A plot & volcano
 
-Next let's look at your DEA results from GENAVi.
+Next let's look at your DEA results from the previous assignment. You should have a csv file with the summary statistics named something like the following code block. Change the code as appropriate for your own data path:
 
 ```{r upload-dea-result, echo=TRUE}
-dea <- read.csv(file = file.path(course_directory, "data", "TEAD2_DEA_0p5cutoff_results_files", "treatment_TEAD2_vs_CRISPRi_CONTROL.csv"))
-knitr::kable(head(dea))
+dea <- read.csv(file = file.path(course_directory, "data", "treatment_TEAD2_vs_CRISPRi_CONTROL.csv"))
+knitr::kable(head(dea[order(dea$padj),], n=50))
 ```
 
-```{r dea-obj, echo=TRUE, results=TRUE}
-head(dea)
-```
-
-1. Using whatever method is easiest (base graphics or ggplot), generate an M-A plot using your dea set from GENAVi:
+1. Using whatever method you're most comfortable with (base graphics or ggplot), generate an M-A plot using your dea set from GENAVi:
 
 ```{r ex2.1-MA}
 ### plot(y = dea$log2FoldChange...  etc etc)
@@ -93,7 +91,11 @@ Our goal is to give you some conceptual basis to understand what is happening in
 
 <iframe width="590" height="332" src="https://www.youtube.com/embed/FgakZw6K1QQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Open a new GENAVi window and load your data and metadata files via the <span style="color:blue">Gene Expression</span> and <span style="color:blue">Differential Expression Analysis</span> tabs as you did in the previous labs. **Note you may need to run this command from a separate instance of R in a terminal so that you can continue to interact with this notebook**:
+It explains some of the basics of linear algebra behind PCA and terminology in the reading material (_e.g._ "eigenvector"). 
+
+Here is [another resource online](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) with excellent, intuitive visualizations and explanations.
+
+Open a new GENAVi window and load your data and metadata files via the <span style="color:blue">Gene Expression</span> and <span style="color:blue">Differential Expression Analysis</span> tabs as you did in the previous labs. **Note you may need to run this command from a separate instance of R or the shinyapps.io webserver so that you can continue to interact with this notebook**:
 
 ```{r open-genavi, echo=TRUE, eval=FALSE}
 shiny::runGitHub("alpreyes/GENAVi")
@@ -113,7 +115,7 @@ write.table(
   quote = FALSE)
 ```
 
-On the <span style="color:blue">Gene Expression</span> tab upload your genelist via the <span style="color:blue">Gene selection</span> menu. Now click on the <span style="color:blue">Visualization</span> tab. It may take a minute to render. Once the heatmap is generated, click on the <span style="color:blue">PCA plots</span> button. Choose <span style="color:blue">Selected genes</span> from the PCA Genes menus. Download a copy of the image and link it below.
+On the <span style="color:blue">Gene Expression</span> tab upload your genelist via the <span style="color:blue">Gene selection</span> menu. Now click on the <span style="color:blue">Visualization</span> tab. It may take a minute to render. Once the heatmap is generated, click on the <span style="color:blue">PCA plots</span> button. Choose <span style="color:blue">Selected genes</span> from the PCA Genes menus. Download a copy of the image and link it below in place of the smiley face.
 
 ![](smiley.jpg)
 
@@ -141,14 +143,16 @@ Replace this text with your answer
 Replace this text with your answer
 </b></i></span>
 
-4. Why does GENAVi provide the capability of generating an HTML report? Change the color of the **_best_** answer choice below to red. Some answer choices are true but not best.
+4. Why does GENAVi provide the capability of generating an HTML report? 
+
+Instructions: change the color of the **_best_** answer choice below to red. Some answer choices are true but not best.
 
 <span style="color:#31a354"><i><b>
-a. To throw your P.I. off the scent.
+a. To make you look like a legit hacker.
 </b></i></span>
 
 <span style="color:#31a354"><i><b>
-b. For publication purposes.
+b. For transparency and reproducibility.
 </b></i></span>
 
 <span style="color:#31a354"><i><b>
@@ -168,7 +172,17 @@ Watch this.
 
 Question for exercise 4.
 
-1. Is t-SNE necessary for a single CRISPRi experiment with 4 samples and a single contrast? Why or why not?
+1. Is t-SNE necessary for a single CRISPRi experiment with 4 samples and a single contrast of interest? Why or why not?
+
+<span style="color:#31a354"><i><b>
+Replace this text with your answer
+</b></i></span>
+
+2. Is there a relationship between PCA analysis and t-SNE? What problem does PCA present that methods like t-SNE and a related procedure called UMAP potentially solve?
+
+## Exercise 5 (for Kate's lecture)
+
+You are a bioinformatician! Your trusted bench scientist colleague brings you a dataset consisting of two replicates each across 3 treatments, including 2 control conditions, one of which has marginal added value (3 x 2 = 6 samples). The replicates are independent library preparations of the same samples. Your colleague says (enthusiastically) to you "I can add more replicates, you know, to get better statistics!" What would you say to them to rescue this experiment? First list the possible types of replication and what types of experimental error they measure and rank their importance. Then, assuming you have budget for library prep and sequencing of up to 4 more samples, make your recommendation.
 
 <span style="color:#31a354"><i><b>
 Replace this text with your answer

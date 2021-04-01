@@ -60,6 +60,14 @@ you plan to use bioinformatics analysis as part of your thesis work.
 shiny::runGitHub("alpreyes/GENAVi")
 ```
 
+### Run GENAVi as a local standalone program
+
+If you know how to use github, you can clone the same public repository locally, and run the following command on the local folder path. For example, on my computer at the R prompt, I run:
+
+```{r run-local, echo=TRUE, results='hide', eval=FALSE}
+shiny::runApp("/Users/hazelettd/repos/GENAVi")
+```
+
 ### Running the GENAVi Docker image
 
 1. If needed, [Install Docker](https://docs.docker.com/docker-hub/)
@@ -143,7 +151,7 @@ d. (hard) What types of questions could one answer with this data? Are there des
 
 ```{r filter-data, echo=TRUE, eval=FALSE}
 
-genesymbol <- 'NSD2'
+genesymbol <- 'MYGENE' # Replace with your gene symbol
 genebatch <- metadat$batch[metadat$treatment==genesymbol][1]
 
 gene.metadat <- rbind(
@@ -165,14 +173,14 @@ cts <- read.csv(
 ## Take a quick peek at the contents
 knitr::kable(cts[1:5, 1:4])
 
-## We need to select the columns from our tead.samples, including the Geneid column:
+## We need to select the columns from our samples, including the Geneid column:
 
 gene.counts <- subset(cts, select = c("Geneid", gene.samples))
 
 ## Now we're ready to export these object for upload to GENAVi
 write.table(
   gene.counts, 
-  file = file.path(course_directory, 'data', paste(genesymbol, 'featcounts.csv', sep = '')),#'teadfeatcounts.csv'),
+  file = file.path(course_directory, 'data', paste(genesymbol, 'featcounts.csv', sep = '')),
   row.names = FALSE,
   quote = FALSE,
   sep = ','
@@ -180,7 +188,7 @@ write.table(
 
 write.table(
   gene.metadat,
-  file = file.path(course_directory, 'data', paste(genesymbol, 'model.csv', sep = '')),#'teadmodel.csv'),
+  file = file.path(course_directory, 'data', paste(genesymbol, 'model.csv', sep = '')),
   row.names = FALSE,
   quote = FALSE,
   sep = ','

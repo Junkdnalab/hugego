@@ -82,13 +82,13 @@ GENAVi locally.
 data for use in GENAVi. Differential gene expression (DGE) analysis using
 GENAVi. **Homework Asssignment II:** (Lab) Perform DGE on a TF of your choice.
 
-#### Tuesday, March 30 *Review*
+#### Tuesday, March 30 *Wet lab/Dry lab integration*
 
-Workshop / Homework Review
+Homework Review & a guest lecture on Bioinformatics and the integration of wet and dry lab approaches by Kate Lawrenson.
 
 #### Thursday, April 1 *Exploratory Analysis*
 
-**Lecture topics:** Unsupervised clustering. Principle Components Analysis
+**Lecture topics:** Understanding count data. Principle Components Analysis
 (PCA). Correlation. **Assignment III:** (Lab) Exploratory analysis of your
 chosen TFs in the CRISPRi dataset.
 
@@ -141,7 +141,7 @@ These schedules are subject to change
 | :-- | :---- | :-------- | :--------- | :--- |
 | Tue | 03/23 | Intro     | L1 (10)    |      |
 | Thu | 03/25 | DGE       | L2 (10)    | L1   |
-| Tue | 03/30 | Wkshp     | -          | L2   |
+| Tue | 03/30 | Wet/Dry   | -          | L2   |
 | Thu | 04/01 | Expl Anls | L3 (10)    |      |
 | Tue | 04/06 | GO Anls   | L4 (10)    | L3   |
 | Thu | 04/08 | Wkshp     | -          | L4   |
