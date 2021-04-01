@@ -87,9 +87,9 @@ knitr::kable(head(dea[order(dea$padj),], n=50))
 
 ## Exercise 3: Principle Components Analysis
 
-Our goal is to give you some conceptual basis to understand what is happening in a Principle components analysis to help guide you in interpretation. In addition to this week's lecture and the [reading material](https://www.nature.com/articles/nbt0308-303) you may find this video helpful:
+Our goal is to give you some conceptual basis to understand what is happening in a Principle components analysis to help guide you in interpretation. In addition to this week's lecture and the [reading material](https://www.nature.com/articles/nbt0308-303) you may find this video helpful.
 
-<iframe width="590" height="332" src="https://www.youtube.com/embed/FgakZw6K1QQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![PCA on Statquest](pca_statquest.png)](https://youtu.be/FgakZw6K1QQ)
 
 It explains some of the basics of linear algebra behind PCA and terminology in the reading material (_e.g._ "eigenvector"). 
 
@@ -166,9 +166,7 @@ d. To help you learn to write code.
 
 ## Exercise 4: t-SNE
 
-Watch this.
-
-<iframe width="590" height="332" src="https://www.youtube.com/embed/NEaUSP4YerM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Watch this [![t-SNE on StatQuest](tsne_statquest.png)](https://www.youtube.com/embed/NEaUSP4YerM).
 
 Question for exercise 4.
 
