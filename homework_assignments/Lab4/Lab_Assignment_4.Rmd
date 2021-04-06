@@ -1,12 +1,12 @@
 ---
 title: "Lab 4: Enrichment"
 output: html_notebook
-date: "due 05/26/2020"
+date: "due 04/08/2021"
 ---
 
 ```{r setup, include=FALSE}
 Sys.getenv("HOME") # see where your home directory is
-course_directory <- file.path(Sys.getenv("HOME"), "repos", "hgg_2020")
+course_directory <- file.path(Sys.getenv("HOME"), "repos", "hugego")
 course_directory # double check what you set your course_directory to
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(root.dir = course_directory)
@@ -14,11 +14,11 @@ knitr::opts_chunk$set(root.dir = course_directory)
 
 ## Objective
 
-In this assignment we are going to try some hands on calculations of common enrichment problems using the distributions we discussed during lecture. Secondly, we will test the functionality for Gene Set Enrichment and ORA in GENAVi.
+In this assignment we are going to try some hands-on calculations of common enrichment problems using the distributions we discussed during lecture. Secondly, we will test the functionality for Gene Set Enrichment and ORA in GENAVi.
 
 ### Exercise 1:
 
-Suppose there is a genome with 20,051 genes. You've just completed an RNA-seq cell-culture study in which you found 283 genes were upregulated in response to application of a drug. Of these genes 6 belong to a molecular pathway "Response to hypoxia" that also contains an additional 48 genes. You would like to determine whether this constitutes enrichment.
+Suppose there is a genome with 20,051 genes. You've just completed an RNA-seq cell-culture study in which you found 283 genes were up-regulated in response to application of a drug. Of these genes, 6 belong to a molecular pathway "Response to hypoxia" that also contains an additional 48 genes. You would like to determine whether this constitutes enrichment.
 
 #### Question 1.1
 
@@ -42,7 +42,7 @@ b. Estimation of probability from the beta distribution.
 
 #### Question 1.3
 
-What method should you use to calculate enrichment in this case?
+What method (test) can you use to calculate enrichment in this case?
 
 <span style="color:#31a354"><i><b>
 Your answer here.
@@ -69,7 +69,7 @@ Suppose your lab burns down before you could finish the experiment and you only 
 
 #### Question 2.1
 
-What is the likely CPM of the gene in the _treatment_ replicate, with $95\%$ confidence interval? (Hint: use the beta distribution (rbeta function) to determine probability mass and then use the quantile function to set the bounds on $2.5\%$ and $97.5\%$ quantiles. Don't forget to convert units to CPM)
+What is the range of credible CPM of the gene in the _treatment_ replicate, with $95\%$ confidence? (Hint: use the beta distribution (rbeta function) to determine probability mass and then use the quantile function to set the bounds on $2.5\%$ and $97.5\%$ quantiles. Don't forget to convert units to CPM)
 
 ```{r q2.1, echo=TRUE}
 ########  enter your code below, do not erase this line
@@ -104,12 +104,12 @@ Open a GENAVi window, and load your DEA results from last week into the <span st
 
 #### Question 3.1
 
-Execute an overrepresentation analysis (ORA) using Gene Ontology. Set fold change to 0.5 and try out all three categories and choose one of the results to include an image and discussion below.
+Execute an over-representation analysis (ORA) using Gene Ontology. Set fold change to 0.5 and try out all three categories and choose one of the results to include an image and discussion below.
 
 ![](<your-image-here>)
 
 <span style="color:#31a354"><i><b>
-Discuss why you chose this and any interpretations you have.
+What is your interpretation of the result? Include a discussion of the parameters you chose.
 </b></i></span>
 
 
@@ -122,5 +122,5 @@ Execute gene set enrichment analysis (GSEA) with Gene Ontology using the same ca
 ![](<your-image-here>)
 
 <span style="color:#31a354"><i><b>
-Add your discussion notes.
+Add discussion notes.
 </b></i></span>

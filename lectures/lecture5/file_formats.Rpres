@@ -6,8 +6,8 @@
 
 Lecture 5 NGS & File Formats
 ========================================================
-author: 
-date: 05/28/2020
+author: Simon Coetzee
+date: 04/13/2021
 autosize: true
 transition: fade
 ```{r setup, include=FALSE}

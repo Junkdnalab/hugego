@@ -1,0 +1,129 @@
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+
+Lecture 4 Biological enrichment calculations and GO/GSEA
+========================================================
+author: 
+date: 04/06/2021
+autosize: true
+transition: fade
+```{r setup, include=FALSE}
+Sys.getenv("HOME") # see where your home directory is
+course_directory <- file.path(Sys.getenv("HOME"), "repos", "hugego")
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(ggridges)
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.width=12, fig.height=6)
+```
+
+General Enrichment Calculation: Applications
+========================================================
+
+- splicing
+- enrichment of SNPs in epigenomics data
+- allele specific expression (ASE)
+
+General Enrichment Calculation: Applications
+========================================================
+
+### Any problem involving count data where the underlying probability is not known but a suitable "background" condition is available for comparison
+
+Enrichment in ranked lists
+========================================================
+
+<img src="marbles_in_a_row.jpeg", style="width:259px;height:194px;"></img>
+
+Online methods
+========================================================
+
+- [GOrilla](http://cbl-gorilla.cs.technion.ac.il/)
+- [**G**ene **S**et **E**nrichment **A**nalysis (GSEA)](https://www.gsea-msigdb.org/gsea/index.jsp)
+
+How GSEA Works
+========================================================
+
+shamelessly stolen from: [Hector Corrada Bravo](http://users.umiacs.umd.edu/~hcorrada/CMSC858B/lectures/lect14/GeneSets.pdf)
+
+<img src="GSEA_1.png", style="width:800px;height:260px;"></img>
+
+How GSEA Works
+========================================================
+
+<img src="GSEA_2.png", style="width:650px;height:400px;"></img>
+
+
+How GSEA Works
+========================================================
+
+<img src="GSEA_4.png", style="width:650px;height:400px;"></img>
+
+How GSEA Works
+========================================================
+
+<img src="GSEA_5.png", style="width:600px;height:500px;"></img>
+
+Ontologies
+========================================================
+
+<i><b>"In computer science and information science, an ontology encompasses a representation, formal naming and definition of the categories, properties and relations between the concepts, data and entities that substantiate one, many or all domains of discourse. More simply, an ontology is a way of showing the properties of a subject area and how they are related, by defining a set of concepts and categories that represent the subject."</i></b>
+
+(from Wikipedia)
+
+Ontologies
+========================================================
+
+[GeneOntology.org](http://geneontology.org/docs/ontology-documentation/)
+
+Gene Ontology is a curated graph of terms
+========================================================
+
+- `Molecular Function` (_e.g._ "adenylate cyclase activity")
+- `Cellular component` (_e.g._ "ribosome")
+- `Biological Process` (_e.g._ "DNA repair")
+
+Other Useful Ontologies
+========================================================
+
+- [Kegg Pathways](https://www.genome.jp/kegg/pathway.html)
+- [Reactome](https://reactome.org/)
+- [SynGO](https://www.syngoportal.org)
+
+![](syngopage1.png)
+
+Other Useful Ontologies
+========================================================
+
+[MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/collection_details.jsp)
+
+- Hallmark genesets
+- Canonical pathways
+- Regulatory Target genesets
+- disease genesets
+- many cancer sets
+- Gene Ontology
+
+Finally: A word about the construction and limitations of all ontologies
+========================================================
+
+<img src="hexose-biosynthetic-process.png", style="width:400px;height:400px;"></img>
+
+Finally: A word about the construction and limitations of all ontologies
+========================================================
+
+<img src="hexose-biosynthetic-process.png", style="width:400px;height:400px;"></img>
+
+- this is how genes relate to multiple terms
+
+Finally: A word about the construction and limitations of all ontologies
+========================================================
+
+<img src="hexose-biosynthetic-process.png", style="width:400px;height:400px;"></img>
+
+- this is how genes relate to multiple terms
+- the usefulness of GO terms varies _greatly_ throughout the graph
+

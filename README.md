@@ -137,18 +137,18 @@ logic and reasoning behind the answers given.
 
 These schedules are subject to change
 
-| day | date  | lecture   | hmwk (pts) | due  |
-| :-- | :---- | :-------- | :--------- | :--- |
-| Tue | 03/23 | Intro     | L1 (10)    |      |
-| Thu | 03/25 | DGE       | L2 (10)    | L1   |
-| Tue | 03/30 | Wet/Dry   | -          | L2   |
-| Thu | 04/01 | Expl Anls | L3 (10)    |      |
-| Tue | 04/06 | GO Anls   | L4 (10)    | L3   |
-| Thu | 04/08 | Wkshp     | -          | L4   |
-| Tue | 04/13 | Formats   | QS5 (10)   |      |
-| Thu | 04/15 | MultiQC   | QS6 (10)   | QS5  |
-| Tue | 04/20 | Review    | -          | QS6  |
-| Thu | 04/22 | Exam      | E1 (30)    | E1   |
+| day | date  | topic     | lecturer   | hmwk (pts) | due  |
+| :-- | :---- | :-------- | :--------- | :--------- | :--- |
+| Tue | 03/23 | Intro     | Hazelett   | L1 (10)    |      |
+| Thu | 03/25 | DGE       | Hazelett   | L2 (10)    | L1   |
+| Tue | 03/30 | Wet/Dry   | Lawrenson  | -          | L2   |
+| Thu | 04/01 | Expl Anls | Hazelett   | L3 (10)    |      |
+| Tue | 04/06 | GO Anls   | Hazelett   | L4 (10)    | L3   |
+| Thu | 04/08 | Wkshp     | All        | -          | L4   |
+| Tue | 04/13 | Formats   | Coetzee    | QS5 (10)   |      |
+| Thu | 04/15 | MultiQC   | Coetzee    | QS6 (10)   | QS5  |
+| Tue | 04/20 | Review    | Hazelett   | -          | QS6  |
+| Thu | 04/22 | Exam      | All        | E1 (30)    | E1   |
 
 **Course schedule and outline.** Numbered assignments are preceded by ‘L’ for
 labs, ‘QS’ for question sets and ‘E’ for exams. Optional times for oral
