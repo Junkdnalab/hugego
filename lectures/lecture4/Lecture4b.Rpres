@@ -46,51 +46,57 @@ Gene Set Enrichment
 Gene Set Enrichment
 ========================================================
 
-* Over Representation Analysis (ORA)
-
-Gene Set Enrichment
-========================================================
-
 * **competitive** and **self-contained** methods
 
 Gene Set Enrichment
 ========================================================
 
 * **competitive** and **self-contained** methods
-  - competitive H0: "the genes in my list are more active than the background"
+  - competitive H0: "the genes in my feature set are no more active than the background"
   
 Gene Set Enrichment
 ========================================================
 
 * **competitive** and **self-contained** methods
-  - competitive H0: "the genes in my list are more active than the background"
-  - self-contained H0: "
+  - competitive H0: "the genes in my feature set are no more active than the background"
+  - self-contained: "genes/annotations of my feature set are not active in this list"
   
+Gene Set Enrichment
+========================================================
+
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my feature set are no more active than the background"
+  - self-contained: "genes/annotations of my feature set are not active in this list"
 * Over Representation Analysis (ORA) -- **"competitive"**
+  - DAVID, clusterProfiler, LEGO
 
 Gene Set Enrichment
 ========================================================
 
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my feature set are no more active than the background"
+  - self-contained: "genes/annotations of my feature set are not active in this list"
 * Over Representation Analysis (ORA) -- **"competitive"**
+  - DAVID, clusterProfiler, LEGO
   - any of the count based analysis methods we've reviewed
 
 Gene Set Enrichment
 ========================================================
 
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my list are no more active than the background"
+  - self-contained: "genes/annotations of my feature set are not active in this list"
 * Over Representation Analysis (ORA) -- **"competitive"**
+  - DAVID, clusterProfiler, LEGO
   - any of the count based analysis methods we've reviewed
-  - even t-tests have been used (e.g. "DAVID")
-
-Gene Set Enrichment
-========================================================
-
-* Over Representation Analysis (ORA) -- **"competitive"**
-  - any of the count based analysis methods we've reviewed
-  - even t-tests have been used (e.g. "DAVID")
 * Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
 
 Gene Set Enrichment
 ========================================================
+
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my list are more active than the background"
+  - self-contained: "genes/annotations of my feature set are not active in this list"
 
 * Over Representation Analysis (ORA) -- **"competitive"**
   - any of the count based analysis methods we've reviewed
@@ -98,16 +104,6 @@ Gene Set Enrichment
 * Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
 * **"self-contained"** methods test whether there are any active features in the set of interest
   - global test, GlobalANCOVA, FORGE
-
-Gene Set Enrichment
-========================================================
-
-* Over Representation Analysis (ORA) -- **"competitive"**
-  - any of the count based analysis methods we've reviewed
-  - even t-tests have been used (e.g. "DAVID")
-* Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
-* **"self-contained"** methods test the association of a gene or feature-set with a phenotype
-<img src="gsea_gold_standard_screenshot.png", style="width:1534px;height:960px;"></img>
 
 Enrichment in ranked lists
 ========================================================
@@ -136,6 +132,11 @@ How GSEA Works
 How GSEA Works
 ========================================================
 
+<img src="GSEA_3.png", style="width:650px;height:400px;"></img>
+
+How GSEA Works
+========================================================
+
 <img src="GSEA_4.png", style="width:650px;height:400px;"></img>
 
 How GSEA Works
@@ -158,18 +159,47 @@ Ontologies
 Gene Ontology is a curated graph of terms
 ========================================================
 
-- `Molecular Function` (_e.g._ "adenylate cyclase activity")
-- `Cellular component` (_e.g._ "ribosome")
-- `Biological Process` (_e.g._ "DNA repair")
+* `Molecular Function` the tasks performed by individual gene products (_e.g._ "adenylate cyclase activity")
+* `Cellular component` subcellular structures, locations, and macromolecular complexes (_e.g._ "ribosome")
+* `Biological Process` broad biological goals, such as mitosis or purine metabolism, that are accomplished by ordered assemblies of molecular functions (_e.g._ "DNA repair")
+
+Gene Ontology is a curated graph of terms
+========================================================
+
+* `Molecular Function` the tasks performed by individual gene products (_e.g._ "adenylate cyclase activity")
+* `Cellular component` subcellular structures, locations, and macromolecular complexes (_e.g._ "ribosome")
+* `Biological Process` broad biological goals, such as mitosis or purine metabolism, that are accomplished by ordered assemblies of molecular functions (_e.g._ "DNA repair")
+
+  - each gene annotated to a node on all three GOs
 
 Other Useful Ontologies
 ========================================================
 
-- Kyoto Encyclopedia of Genes and Genomes ([Kegg](https://www.genome.jp/kegg/pathway.html))
-- [Reactome](https://reactome.org/)
-- [SynGO](https://www.syngoportal.org)
+  - Kyoto Encyclopedia of Genes and Genomes   ([Kegg](https://www.genome.jp/kegg/pathway.html))
+
+Other Useful Ontologies
+========================================================
+
+  - Kyoto Encyclopedia of Genes and Genomes   ([Kegg](https://www.genome.jp/kegg/pathway.html))
+  - [Reactome](https://reactome.org/)
+
+Other Useful Ontologies
+========================================================
+
+  - Kyoto Encyclopedia of Genes and Genomes   ([Kegg](https://www.genome.jp/kegg/pathway.html))
+  - [Reactome](https://reactome.org/)
+  - [SynGO](https://www.syngoportal.org)
 
 ![](syngopage1.png)
+
+Other Useful Ontologies
+========================================================
+
+  - Kyoto Encyclopedia of Genes and Genomes   ([Kegg](https://www.genome.jp/kegg/pathway.html))
+  - [Reactome](https://reactome.org/)
+  - [SynGO](https://www.syngoportal.org)
+  - [Panther](http://www.pantherdb.org/panther/ontologies.jsp)
+  - [WikiPathways](https://www.wikipathways.org/index.php/WikiPathways)
 
 Other Useful Ontologies
 ========================================================
@@ -199,7 +229,7 @@ Other Useful Ontologies
 Navigating Reactome
 - Pathway browser
 
-<img src="reactome_browser.png", style="width:1200px; height:600px;"></img>
+<img src="reactome_browser.png", style="width:1200px; height:500px;"></img>
 
 Other Useful Ontologies
 ========================================================
@@ -207,7 +237,7 @@ Other Useful Ontologies
 Navigating Reactome
 - Pathway Structure
 
-<img src="reactome_hierarchy.png", style="width:1200px; height:600px;"></img>
+<img src="reactome_hierarchy.png", style="width:1200px; height:500px;"></img>
 
 Other Useful Ontologies
 ========================================================
@@ -223,12 +253,10 @@ Molecular Signatures Database ([MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/
 Other Useful Ontologies
 ========================================================
 
-[Panther](http://www.pantherdb.org/panther/ontologies.jsp)
 
 Other Useful Ontologies
 ========================================================
 
-[WikiPathways](https://www.wikipathways.org/index.php/WikiPathways)
 
 
 Finally: A word about the construction and limitations of all ontologies
