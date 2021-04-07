@@ -4,7 +4,7 @@
 }
 </style>
 
-Lecture 4 Biological enrichment calculations and GO/GSEA
+Lecture 4b Gene Set Enrichment Analysis and Gene Ontologies
 ========================================================
 author: 
 date: 04/06/2021
@@ -32,6 +32,82 @@ General Enrichment Calculation: Applications
 ========================================================
 
 ### Any problem involving count data where the underlying probability is not known but a suitable "background" condition is available for comparison
+
+Gene Set Enrichment
+========================================================
+
+<img src="immgen_enrichment.png", style="width:600px;height:280px;"></img>
+
+Gene Set Enrichment
+========================================================
+
+<img src="gsea_plot_example.jpg", style="width:600px;height:520px;"></img>
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA)
+
+Gene Set Enrichment
+========================================================
+
+* **competitive** and **self-contained** methods
+
+Gene Set Enrichment
+========================================================
+
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my list are more active than the background"
+  
+Gene Set Enrichment
+========================================================
+
+* **competitive** and **self-contained** methods
+  - competitive H0: "the genes in my list are more active than the background"
+  - self-contained H0: "
+  
+* Over Representation Analysis (ORA) -- **"competitive"**
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA) -- **"competitive"**
+  - any of the count based analysis methods we've reviewed
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA) -- **"competitive"**
+  - any of the count based analysis methods we've reviewed
+  - even t-tests have been used (e.g. "DAVID")
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA) -- **"competitive"**
+  - any of the count based analysis methods we've reviewed
+  - even t-tests have been used (e.g. "DAVID")
+* Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA) -- **"competitive"**
+  - any of the count based analysis methods we've reviewed
+  - even t-tests have been used (e.g. "DAVID")
+* Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
+* **"self-contained"** methods test whether there are any active features in the set of interest
+  - global test, GlobalANCOVA, FORGE
+
+Gene Set Enrichment
+========================================================
+
+* Over Representation Analysis (ORA) -- **"competitive"**
+  - any of the count based analysis methods we've reviewed
+  - even t-tests have been used (e.g. "DAVID")
+* Gene Set Enrichment Analysis (GSEA) -- **"competitive"**
+* **"self-contained"** methods test the association of a gene or feature-set with a phenotype
+<img src="gsea_gold_standard_screenshot.png", style="width:1534px;height:960px;"></img>
 
 Enrichment in ranked lists
 ========================================================
@@ -89,7 +165,7 @@ Gene Ontology is a curated graph of terms
 Other Useful Ontologies
 ========================================================
 
-- [Kegg Pathways](https://www.genome.jp/kegg/pathway.html)
+- Kyoto Encyclopedia of Genes and Genomes ([Kegg](https://www.genome.jp/kegg/pathway.html))
 - [Reactome](https://reactome.org/)
 - [SynGO](https://www.syngoportal.org)
 
@@ -98,7 +174,7 @@ Other Useful Ontologies
 Other Useful Ontologies
 ========================================================
 
-[MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/collection_details.jsp)
+Molecular Signatures Database ([MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/collection_details.jsp))
 
 - Hallmark genesets
 - Canonical pathways
@@ -106,6 +182,17 @@ Other Useful Ontologies
 - disease genesets
 - many cancer sets
 - Gene Ontology
+
+Other Useful Ontologies
+========================================================
+
+[Panther](http://www.pantherdb.org/panther/ontologies.jsp)
+
+Other Useful Ontologies
+========================================================
+
+[WikiPathways](https://www.wikipathways.org/index.php/WikiPathways)
+
 
 Finally: A word about the construction and limitations of all ontologies
 ========================================================
