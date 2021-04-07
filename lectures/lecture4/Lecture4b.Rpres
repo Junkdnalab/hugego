@@ -98,6 +98,44 @@ Other Useful Ontologies
 Other Useful Ontologies
 ========================================================
 
+[Reactome](https://reactome.org/) is an expert-authored, peer-reviewed knowledgebase of reactions and pathways.
+
+<img src="reactome_release_info.png";"></img>
+
+- Manually curated human pathways with experimental evidence (regarded highest quality)
+- Manually inferred pathways for other organism (_e.g. Gallus gallus, Mus musculus_)
+
+**Reactome is useful when...**
+- Know molecular details of a pathway based on literature (_e.g. directed pathway_)
+- Learn crosstalk between pathways (_e.g. shared genes/reactions_)
+
+Other Useful Ontologies
+========================================================
+
+Navigating Reactome
+- Webpage provides an easy way to access, browse, analyse and download pathway data
+
+<img src="reactome_landing_page.png", style="width:600px; height:300px;"></img>
+
+Other Useful Ontologies
+========================================================
+
+Navigating Reactome
+- Pathway browser
+
+<img src="reactome_browser.png", style="width:1200px; height:600px;"></img>
+
+Other Useful Ontologies
+========================================================
+
+Navigating Reactome
+- Pathway Structure
+
+<img src="reactome_hierarchy.png", style="width:1200px; height:600px;"></img>
+
+Other Useful Ontologies
+========================================================
+
 [MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/collection_details.jsp)
 
 - Hallmark genesets
