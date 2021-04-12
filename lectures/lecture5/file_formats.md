@@ -6,8 +6,8 @@
 
 Lecture 5 NGS & File Formats
 ========================================================
-author: 
-date: 05/28/2020
+author: Simon Coetzee
+date: 04/13/2021
 autosize: true
 transition: fade
 
@@ -138,7 +138,7 @@ FASTQ
 ========================================================
 
 - Quality Scores
-  - Score is 0 - 40, represented by ASCII sequences. Primariliy with an offset of 33
+  - Score is 0 - 40, represented by ASCII sequences. Primarily with an offset of 33
 
 <center>
 ![](PHRED.png)
@@ -151,9 +151,11 @@ FASTQ
 ========================================================
 
 - Quality Scores
-  - Score is 0 - 40, represented by ASCII sequences. Primariliy with an offset of 33
-  - Q = $-10 \log_{10} P$ 
+  - Score is 0 - 40, represented by ASCII sequences. Primarily with an offset of 33
+  - Q = $-10 \log_{10} P$
   - P = $10 ^ {-Q/10}$
+
+common question "how many reads 
 
 <center>
 ![](PHRED.png)
@@ -235,6 +237,29 @@ Example of the first few fields of the SAM header
 ![](sam_header.png)
 </center>
 
+SAM / BAM / CRAM
+========================================================
+Sequence Alignment Map (SAM)
+
+Fully Described in a [specification](https://samtools.github.io/hts-specs/SAMv1.pdf)
+
+Complex header - many optional fields
+
+Each header line begins with the character `@` followed by one of the two-letter header record type codes.
+
+In the header, each line is TAB-delimited and, apart from `@CO` lines, each data field follows a format ‘TAG:VALUE’ where TAG is a two-character string that defines the format and content of VALUE.
+
+
+========================================================
+
+    @HD The header line. The first line if present.
+        VN* Format version. Accepted format: /^[0-9]+.[0-9]+$/.
+    @SQ Reference sequence dictionary. The order of @SQ lines defines the alignment sorting order.
+        SN* Reference sequence name. The SN tags and all individual AN names in all @SQ lines must be distinct. The value of this field is used in the alignment records in RNAME and RNEXT fields. Regular expression: [:rname:∧ =][:rname:]
+        LN* Reference sequence length. Range: [1, 2 31 − 1]
+    @RG Read group. Unordered multiple @RG lines are allowed.
+        ID* Read group identifier. Each @RG line must have a unique ID. The value of ID is used in the RG tags of alignment records. Must be unique among all read groups in header section. Read group IDs may be modified when merging SAM files in order to handle collisions.
+
 
 SAM / BAM / CRAM
 ========================================================
@@ -275,6 +300,14 @@ SAM / BAM / CRAM
 ========================================================
 Flags can tell you about each read, and allow for summaries on the file, and filtering.
 
+<center>
+![](flagstat.png)
+</center>
+
+SAM / BAM / CRAM
+========================================================
+Flags can tell you about each read, and allow for summaries on the file, and filtering.
+
 The appropriate tool can easily manipulate bam files.
 
 i.e., [samtools](http://www.htslib.org/), [picard](https://broadinstitute.github.io/picard/)
@@ -282,14 +315,6 @@ i.e., [samtools](http://www.htslib.org/), [picard](https://broadinstitute.github
 `samtools flagstat file.bam`
 <center>
 ![](color_flagstat.png)
-</center>
-
-SAM / BAM / CRAM
-========================================================
-CIGAR can encode the alignment
-
-<center>
-![](color_sam.png)
 </center>
 
 SAM / BAM / CRAM
@@ -308,6 +333,8 @@ SAM / BAM / CRAM
 ========================================================
 CIGAR can encode the alignment
 
+Compact Idiosyncratic Gapped Alignment Report
+
 <center>
 ![](cigar_description.png)
 </center>
@@ -317,8 +344,25 @@ SAM / BAM / CRAM
 CIGAR can encode the alignment
 
 <center>
+![](color_sam.png)
+</center>
+
+SAM / BAM / CRAM
+========================================================
+CIGAR can encode the alignment
+
+<center>
 ![](sam_zoom.png)
 </center>
+
+SAM / BAM / CRAM
+========================================================
+CIGAR can encode the alignment
+
+<center>
+![](samtools_complexity.png)
+</center>
+
 
 BED
 ========================================================
