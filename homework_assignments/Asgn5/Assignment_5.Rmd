@@ -1,6 +1,8 @@
 ---
 title: "GSEA continued + File formats"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -120,7 +122,7 @@ if (sum(top) <= baseline * ngenes) {
   ## iterate enrichment scores over the ranked list of genes:
   for (i in 1:ngenes) {
     expected = baseline * i
-    ## ENRICMENT FUNCTION:
+    ## ENRICHMENT FUNCTION:
     escore[i] <- sum(ranked_list[1:i]) - expected
     ### uncomment this section after completion of ex 2.2
     # epval[i] <- phyper(
@@ -149,7 +151,7 @@ Alter the code block above with some parameters that appear to show clear enrich
 
 Fix the part of the code pertaining to the pvalue calculation by adding arguments to the phyper function. Take a minute to review the code block below. After running the code below, are any of the calculated p values "significant"? 
 
-```{r significance1}
+```{r significance1, eval=FALSE}
 print(cutoff)
 print(min(which(escore==max(escore))))
 print(epval[min(which(escore==max(escore)))])
@@ -268,6 +270,17 @@ ATACAAAAATTAGCTGGGCATGGTGGTGTGCACCTGTAATCCCAGCTACTTGGGAAGCTGAGGCAGGAGAATCGCTTGAA
 Let's say you have aligned some RNA-Seq, and now you have a BAM file. You would like to know how many reads you have for each gene in your sample's genome.
 
 What is one tool that can be used to count gene abundance, and what type of file would you need to describe the the position and structure of those genes.
+
+<span style="color:#31a354"><i><b>
+answer here
+</b></i></span>
+
+
+### 6
+
+Post Alignment QC question (sources will be given after Thursday (04/15/21) lecture - 
+
+Using the provided pre- and post- alignment metrics, evaluate the sequencing files corresponding to your transcription factor. For each metric, see if you can find a sample that looks as good or better, and another that is worse. Describe how you evaluated "better" or "worse". Given only the quality of the data for your transcription factor, would you request a repeat of the experiment if it was in your power to do so?
 
 <span style="color:#31a354"><i><b>
 answer here
