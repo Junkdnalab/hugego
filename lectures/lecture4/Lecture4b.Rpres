@@ -7,7 +7,7 @@
 Lecture 4b Gene Set Enrichment Analysis and Gene Ontologies
 ========================================================
 author: 
-date: 04/06/2021
+date: 04/08/2021
 autosize: true
 transition: fade
 ```{r setup, include=FALSE}
@@ -249,15 +249,6 @@ Molecular Signatures Database ([MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/
 - disease genesets
 - many cancer sets
 - Gene Ontology
-
-Other Useful Ontologies
-========================================================
-
-
-Other Useful Ontologies
-========================================================
-
-
 
 Finally: A word about the construction and limitations of all ontologies
 ========================================================

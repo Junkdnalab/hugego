@@ -184,7 +184,7 @@ FASTQ
   - Q = $-10 \log_{10} P$
   - P = $10 ^ {-Q/10}$
 
-common question "how many reads 
+common question "how many reads have an average phred quality score > 30?"
 
 <center>
 ![](PHRED.png)
@@ -347,7 +347,7 @@ Where is it used?
 
 - Alignment algorithms
 - Some assemblers
-- CRAM/unaligned Bam (uBAM) can be a source of data delivery in some institutions: this cuts down significantly on storage space and transfer speed.
+- CRAM/unaligned BAM (uBAM) can be a source of data delivery in some institutions: this cuts down significantly on storage space and transfer speed.
 - Alignment viewers
 - Variant detection algorithms
 
@@ -362,10 +362,10 @@ Sequence Alignment Map (SAM)
 
 SAM / BAM / CRAM
 ========================================================
-11 manditory fields
+11 mandatory fields
 
 <center>
-![](sam_manditory_fields.png)
+![](sam_mandatory_fields.png)
 </center>
 
 SAM / BAM / CRAM
@@ -388,7 +388,7 @@ SAM / BAM / CRAM
 ========================================================
 Flags can tell you about each read, and allow for summaries on the file, and filtering.
 
-The appropriate tool can easily manipulate bam files.
+The appropriate tool can easily manipulate BAM files.
 
 i.e., [samtools](http://www.htslib.org/), [picard](https://broadinstitute.github.io/picard/)
 
@@ -403,7 +403,7 @@ MAPQ can encode the Mapping Quality
 
 $-10 log_{10} Pr \{mapping\ position\ is\ wrong\}$
 
-255 indicates no mapping quality is availible
+255 indicates no mapping quality is available
 
 <center>
 ![](sam_manditory_fields.png)
