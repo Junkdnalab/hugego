@@ -2,13 +2,18 @@
 .small-code pre code {
   font-size: 1em;
 }
+.reveal .slides{
+    width: 90% !important;  /* or other width */
+    height: 90% !important;  /* or other width */
+}
 </style>
 
 Lecture 5 NGS & File Formats
 ========================================================
 author: Simon Coetzee
 date: 04/13/2021
-autosize: true
+width: 1440
+height: 900
 transition: fade
 ```{r setup, include=FALSE}
 opts_chunk$set(cache=TRUE, fig.width=12, fig.height=6)
@@ -144,6 +149,7 @@ FASTQ
 
 <center>
 ![](PHRED.png)
+
 ![](ascii_table.png)
 
 https://en.wikipedia.org/wiki/ASCII
@@ -182,6 +188,56 @@ FASTQC
 <center>
 ![](fastqc_example.png)
 </center>
+
+FASTQC
+========================================================
+Raw Data QC:
+  * identify sequencing problems.
+  * identify contaminating sequences.
+  * gain insight into library complexity.
+
+FASTQC
+========================================================
+Raw Data QC:
+  * identify sequencing problems.
+    * check quality of base calls.
+    * examine the reads to ensure quality matches expectations.
+    * check for contamination.
+
+FASTQC
+========================================================
+*Things to check for:* (problems with sequencing)
+
+Poor Quality across the sequence.
+
+Drop in quality unexpectedly (e.g. in the middle)
+
+Large Percentage of sequence with low quality scores.
+
+FASTQC
+========================================================
+*Things to check for:* 
+
+* Biased sequence composition
+   * Could be due to contaminating sequence (mitochondrial RNA, rRNA, adapters)
+
+* High level of sequence duplications
+  * Low complexity library - too much PCR not enought starting material.
+  * Not always a problem at this stage of QC (post alignment QC will inform)
+
+* Over-represented sequences
+  * Again - adapters, contamination, vectors
+
+FASTQC
+========================================================
+*Can we ID degraded RNA-Seq samples at this stage?*
+
+FASTQC
+========================================================
+*Can we ID degraded RNA-Seq samples at this stage?*
+
+No, degraded samples usually just have generally sorter RNA molecules, 
+the quality of the sequenced nucleotides will be fine.
 
 SAM / BAM / CRAM
 ========================================================
@@ -233,11 +289,6 @@ Some include:
   - SAM format version
   - sequencer name and version
 
-<center>
-Example of the first few fields of the SAM header
-
-![](sam_header.png)
-</center>
 
 SAM / BAM / CRAM
 ========================================================
@@ -249,10 +300,16 @@ Complex header - many optional fields
 
 Each header line begins with the character `@` followed by one of the two-letter header record type codes.
 
-In the header, each line is TAB-delimited and, apart from `@CO` lines, each data field follows a format ‘TAG:VALUE’ where TAG is a two-character string that defines the format and content of VALUE.
+In the header, each line is TAB-delimited and, apart from `@CO` lines, each data field follows a format `TAG:VALUE` where TAG is a two-character string that defines the format and content of VALUE.
 
 
 ========================================================
+
+<center>
+Example of the first few fields of the SAM header
+
+![](sam_header.png)
+</center>
 
     @HD The header line. The first line if present.
         VN* Format version. Accepted format: /^[0-9]+.[0-9]+$/.
@@ -419,7 +476,6 @@ Name, Score, Strand, thickStart, thickEnd, itemRgb, blockCount, blockSizes, bloc
 
 <center>
 ![](basic_bed.png)
-![](color_bed.png)
 </center>
 
 BED
