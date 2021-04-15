@@ -3,12 +3,17 @@ title: "GSEA continued + File formats"
 output:
   html_document:
     df_print: paged
+date: "due April 20, 2021"
 ---
+
+Name:
+
+## My Name
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 Sys.getenv("HOME") # see where your home directory is
-course_directory <- file.path(Sys.getenv("HOME"), "repos", "hgg_2020")
+course_directory <- file.path(Sys.getenv("HOME"), "repos", "hugego")
 course_directory # double check what you set your course_directory to
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(root.dir = course_directory)
@@ -16,14 +21,14 @@ knitr::opts_chunk$set(root.dir = course_directory)
 
 # Objectives
 
-- gain a deeper understanding of GSEA through experimentation and simulation
+- gain a deeper understanding of GSEA through simulation
 
 - review concepts from lecture on File formats
 
 
 ## Simulated GSEA
 
-In the following code block, we are simulating a ranked genelist that has defined enrichment in the top part of the list. In our simulation, we want to look at how varying parameters such as the enrichment cutoff and magnitude of enrichment affect the resulting GSEA graph.
+In the following code block, we are simulating a ranked genelist with known enrichment in the top part of the list. In our simulation, we want to look at how parameters such as  enrichment cutoff and magnitude affect the resulting GSEA graph.
 
 Take some time to review the code below:
 
@@ -31,18 +36,24 @@ Take some time to review the code below:
 
 # define parameters:
 ngenes <- 2e4 # total number of genes
-cutoff <- ngenes / 5 # number of top ranked genes with enrichment (default here 1/5 of genes)
+cutoff <- round(ngenes / 10, 0) # number of top ranked genes with enrichment (default here 1/5 of genes)
 pathway_genes <- 50 # number of genes in pathway
-baseline <- pathway_genes/ngenes # fraction of total genes in pathway of interest
-enrich <- baseline * 3 # probability of pathway genes in top list
+baseline <- pathway_genes / ngenes # the baseline is the fraction of total genes in pathway of interest, i.e. the expect frequency with no enrichment
+enrich <- baseline * 10 # probability of pathway genes in top list
 
 # simulate a dataset:
 if (enrich > 1) {warning("total enrichment probability is greater than 100%")}
 if (baseline * cutoff < 1) {print("WARNING: baseline probability is too low")}
-top <- sample(c(rep(0, (1-enrich) * cutoff), rep(1, enrich * cutoff)), size = cutoff, replace = F)
+
+# First, we create the top ranked genes in our list, which are enriched by the factor `enrich`
+top <- sample(c(rep(0, round((1-enrich) * cutoff, 0)), rep(1, round(enrich * cutoff))), 
+              size = cutoff, 
+              replace = F)
+
+# Then, we will generate the rest of the list, which has the remaining genes in our pathway of interest
 if (sum(top) <= baseline * ngenes) {
-  bot <- sample(c(rep(0, (1-baseline) * (ngenes - cutoff) + sum(top)), 
-                  rep(1, ngenes*baseline - sum(top))),
+  bot <- sample(c(rep(0, round((1-baseline) * (ngenes - cutoff), 0) + sum(top)), 
+                  rep(1, round(ngenes * baseline, 0) - sum(top))),
                 size = ngenes-cutoff, replace = F)
   ranked_list <- c(top, bot)
 
@@ -50,10 +61,13 @@ if (sum(top) <= baseline * ngenes) {
   escore <- numeric(ngenes)
 
   ## iterate enrichment scores over the ranked list of genes:
+  running_sum <- 0
   for (i in 1:ngenes) {
+    ## the expected number of genes changes with each iteration
     expected = baseline * i
-    ## ENRICMENT FUNCTION:
-    escore[i] <- sum(ranked_list[1:i]) - expected
+    ## ENRICHMENT FUNCTION: 
+    running_sum <- running_sum + ranked_list[i]
+    escore[i] <- running_sum - expected
   }
   
   # visualize the results:
@@ -79,9 +93,9 @@ answer here
 
 ### Question 1.2
 
-- Execute the code several more times by clicking the green arrow in the upper right of the code block in rstudio. How stable or unstable is the enrichment curve?
+- Execute the code several more times by clicking the green arrow in the upper right of the code block in rstudio. Would you characterize the resulting graph as stable?
 
-- Try varying the cutoff parameter to increase the fraction of the list with probable enrichment. At what number does it become stable (_i.e._ consistently shows enrichment)? How do would you define enrichment?
+- Try varying the cutoff parameter to increase the fraction of the list with probable enrichment. At what number does it become stable (_i.e._ consistently shows enrichment)? What effect does list length (the cutoff parameter) have on your ability to detect enrichment?
 
 <span style="color:#31a354"><i><b>
 answer here
@@ -89,7 +103,11 @@ answer here
 
 ### Question 1.3
 
--Try varying the enrichment parameter with a moderate sized list (cutoff=100). At what fold-enrichment (enrich $\div$ baseline) does the graph appear to be stably enriched?
+-Try varying the enrichment parameter with a moderate sized list (cutoff=100; _i.e._ set the denominator to 200). At what fold-enrichment (enrich $\div$ baseline) does the graph appear to be stably enriched? Is the sensitivity to fold-enrichment affected by list length?
+
+<span style="color:#31a354"><i><b>
+answer here
+</b></i></span>
 
 ## Exercise 2
 
@@ -100,7 +118,7 @@ Suppose we wanted to add a pvalue calculation using Fisher's exact test, using t
 
 # define parameters:
 ngenes <- 2e4 # total number of genes
-cutoff <- ngenes / 5 # number of top ranked genes with enrichment (default here 1/5 of genes)
+cutoff <- round(ngenes / 5, 0) # number of top ranked genes with enrichment (default here 1/5 of genes)
 pathway_genes <- 50 # number of genes in pathway
 baseline <- pathway_genes/ngenes # fraction of total genes in pathway of interest
 enrich <- baseline * 2 # probability of pathway genes in top list
@@ -108,11 +126,17 @@ enrich <- baseline * 2 # probability of pathway genes in top list
 # simulate a dataset:
 if (enrich > 1) {warning("total enrichment probability is greater than 100%")}
 if (baseline * cutoff < 1) {print("WARNING: baseline probability is too low")}
-top <- sample(c(rep(0, (1-enrich) * cutoff), rep(1, enrich * cutoff)), size = cutoff, replace = F)
+
+top <- sample(c(rep(0, round((1 - enrich) * cutoff, 0)), 
+                rep(1, round(enrich * cutoff, 0))), 
+              size = cutoff, 
+              replace = F)
+
 if (sum(top) <= baseline * ngenes) {
-  bot <- sample(c(rep(0, (1-baseline) * (ngenes - cutoff) + sum(top)), 
-                  rep(1, ngenes*baseline - sum(top))),
-                size = ngenes-cutoff, replace = F)
+  bot <- sample(c(rep(0, round((1-baseline) * (ngenes - cutoff), 0) + sum(top)), 
+                  rep(1, round(ngenes * baseline, 0) - sum(top))),
+                size = ngenes-cutoff, 
+                replace = F)
   ranked_list <- c(top, bot)
 
   ## create vectors to store enrichment scores and pvals:
@@ -120,11 +144,13 @@ if (sum(top) <= baseline * ngenes) {
   epval  <- numeric(ngenes)
   
   ## iterate enrichment scores over the ranked list of genes:
+  running_sum <- 0
   for (i in 1:ngenes) {
-    expected = baseline * i
+    expected = round(baseline * i, 0)
     ## ENRICHMENT FUNCTION:
-    escore[i] <- sum(ranked_list[1:i]) - expected
-    ### uncomment this section after completion of ex 2.2
+    running_sum <- running_sum + ranked_list[i]
+    escore[i] <- running_sum - expected
+    ### uncomment this section for exercise 2.2
     # epval[i] <- phyper(
     #   ## REMINDER! the upper tail is non-inclusive
     #   q = # enter code here & uncomment,
@@ -153,8 +179,8 @@ Fix the part of the code pertaining to the pvalue calculation by adding argument
 
 ```{r significance1, eval=FALSE}
 print(cutoff)
-print(min(which(escore==max(escore))))
-print(epval[min(which(escore==max(escore)))])
+print(min(which(escore == max(escore))))
+print(epval[min(which(escore == max(escore)))])
 ```
 
 ### 2.3 
@@ -181,13 +207,16 @@ Let's define a function to simulate a randomized dataset with the same general p
 
 ## calculates the maximum enrichment score of a random datasdet
 randscore <- function(ngenes, baseline) {
-  genes <- c(rep(1, baseline*ngenes), rep(0, ngenes-baseline*ngenes))
+  genes <- c(rep(1, round(baseline * ngenes, 0)), rep(0, ngenes-round(baseline*ngenes, 0)))
   ranked_random_geneset <- sample(genes, size = ngenes, replace = F)
   escore <- numeric(ngenes)
+  running_sum <- 0
+  tally <- 0
   for (i in 1:ngenes) {
-    expected = baseline * i
-    ## ENRICMENT FUNCTION:
-    escore[i] <- sum(ranked_random_geneset[1:i]) - expected
+    expected = round(baseline * i, 0)
+    running_sum <- running_sum + ranked_random_geneset[i]
+    ## ENRICHMENT FUNCTION:
+    escore[i] <- running_sum - expected
   }
   max(escore)
 }
@@ -200,13 +229,15 @@ We can use this function to permute the range of scores we can expect with a pat
 permutations <- 1000
 trialdata <- numeric(permutations)
   
+print("This may take a while!.......")
 for (i in 1:permutations) {
   trialdata[i] <- randscore(ngenes = ngenes, baseline = baseline)
+  if (i %% 100 == 0) print(i)
 }
 
 sigcount <- numeric(permutations)
 for (i in 1:permutations) {sum(trialdata[i] > escore)}
-sum(sigcount)/permutations
+sum(sigcount) / permutations
 
 trialdata <- data.frame(
   trialnum = 1:permutations,
@@ -218,7 +249,7 @@ ggplot(trialdata, aes(x=maxscore)) + geom_histogram()
 
 ### 3.1
 
-How does your `max(escore)` compare to the histogram?
+How does your `max(escore)` (from the graph in exercise 2) compare to this histogram?
 
 <span style="color:#31a354"><i><b>
 answer here
@@ -226,13 +257,13 @@ answer here
 
 ### 3.2
 
-Calculate a P-value. To do this, simply quantify the number of random scores $\geq$ to your `max(escore)` value and divide by the number of permutations:
+Calculate a P-value. To do this, simply quantify the number of random scores ≥ to your `max(escore)` value and divide by the number of permutations:
 
 ```{r calc-gsea-pval}
 ### your code here
 ```
 
-A major caveat is that this p-value only has as much resolution as 1 $\div$ the number of permutations. Therefore if your answer above is equivalent to `0`, how would you state the p value for accuracy? (_i.e._ $p < ?$)
+A major caveat is that this p-value only has as much resolution as 1 ÷ the number of permutations. Therefore if your answer above is equivalent to `0`, how would you state the p value for accuracy? (_i.e._ $p < ?$)
 
 <span style="color:#31a354"><i><b>
 answer here
