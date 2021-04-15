@@ -382,6 +382,19 @@ Typically, for paired-end read data (single-end data is also handled) these algo
 
 There is a concern that duplicates may correspond to biased PCR amplification of particular fragments, however, for highly expressed or short genes, duplicates are expected even if there is no amplification bias. Removing them will reduce the dynamic range of expression estimates. Generally duplicates should therefore not be removed in RNA-seq analysis
 
+Duplicate Reads -- an Update
+========================================================
+
+```{r, echo = FALSE, out.width='48%', out.height='24%', fig.show='hold', fig.align='center'}
+include_graphics(c("./MEND.png"))
+```
+
+Duplicate Reads -- an Update
+========================================================
+```{r, echo = FALSE, out.width='48%', out.height='24%', fig.show='hold'}
+include_graphics(c("./duplicate_fraction.jpeg", "./mend_diagram.jpeg"))
+```
+
 Library Complexity
 ========================================================
 Preseq is a tool to help you design and optimize sequencing experiments by using population sampling models to infer properties of the population or the behavior under deeper sampling based upon a small initial sequencing experiment. 

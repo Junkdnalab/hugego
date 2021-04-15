@@ -369,6 +369,15 @@ Typically, for paired-end read data (single-end data is also handled) these algo
 
 There is a concern that duplicates may correspond to biased PCR amplification of particular fragments, however, for highly expressed or short genes, duplicates are expected even if there is no amplification bias. Removing them will reduce the dynamic range of expression estimates. Generally duplicates should therefore not be removed in RNA-seq analysis
 
+Duplicate Reads -- an Update
+========================================================
+
+<img src="./MEND.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="48%" height="24%" style="display: block; margin: auto;" />
+
+Duplicate Reads -- an Update
+========================================================
+<img src="./duplicate_fraction.jpeg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="24%" /><img src="./mend_diagram.jpeg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="24%" />
+
 Library Complexity
 ========================================================
 Preseq is a tool to help you design and optimize sequencing experiments by using population sampling models to infer properties of the population or the behavior under deeper sampling based upon a small initial sequencing experiment. 
@@ -379,13 +388,13 @@ Library Complexity
 ========================================================
 The estimates can then be used to examine the utility of further sequencing, optimize the sequencing depth, or to screen multiple libraries to avoid low complexity samples.
 
-<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="48%" height="49%" />
+<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="48%" height="49%" />
 
 Library Complexity
 ========================================================
 The estimates can then be used to examine the utility of further sequencing, optimize the sequencing depth, or to screen multiple libraries to avoid low complexity samples.
 
-<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="49%" /><img src="./preseq_observed.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="49%" />
+<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="48%" height="49%" /><img src="./preseq_observed.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="48%" height="49%" />
 
 Homework
 ========================================================
