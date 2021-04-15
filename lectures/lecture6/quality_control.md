@@ -2,13 +2,18 @@
 .small-code pre code {
   font-size: 1em;
 }
+.reveal .slides{
+    width: 90% !important;  /* or other width */
+    height: 90% !important;  /* or other width */
+}
 </style>
 
 Lecture 6: Quality Control & Alignment Basics
 ========================================================
-author: 
-date: 06/04/2020
-autosize: true
+author: Simon Coetzee
+date: 04/15/2021
+width: 1440
+height: 900
 transition: fade
 
 
@@ -52,7 +57,7 @@ Common RNA-Seq Computational Processing
   - _Tools Like:_
   - featureCounts - [documentation](http://bioinf.wehi.edu.au/featureCounts/)
   - HTSeq - [documentation](https://htseq.readthedocs.io/en/master/)
-
+  - RSEM - [documentation](https://deweylab.github.io/RSEM/README.html)
 
 Alignment
 ========================================================
@@ -86,6 +91,7 @@ Alignment
 
 - Alignment to the genome
   - STAR does this, also HISAT2 and Bowtie2
+
 <center>
 ![](STAR.png)
 </center>
@@ -93,16 +99,16 @@ Alignment
 Alignment
 ========================================================
 
-- Alignment to the genome
-- Alignment to the transcriptome
-  - Rare in the context of true alignment
-  - May be valuable where a quality genome does not exist for your organism
+- Alignment to the genome.
+- Alignment to the transcriptome.
+  - Rare in the context of true alignment.
+  - May be valuable where a quality genome does not exist for your organism.
 
 Alignment
 ========================================================
 
-- Alignment to the genome
-- Alignment to the transcriptome
+- Alignment to the genome.
+- Alignment to the transcriptome.
 
 <center>
 ![](spliced_unspliced.png)
@@ -160,21 +166,22 @@ Work Around:
 Mapping
 ========================================================
 
-- Alternative to alignment + counting
+- Alternative to alignment + counting.
+- Sometimes called lightweight alignment.
+
+Mapping
+========================================================
+
+- Alternative to alignment + counting.
+- Useful for quantifying gene expression of known genes and isoforms.
 
 Mapping
 ========================================================
 
 - Alternative to alignment
-- Useful for quantifying gene expression of known genes and isoforms
-
-Mapping
-========================================================
-
-- Alternative to alignment
-- Useful for quantifying gene expression of known genes and isoforms
-- Fast and computationally cheap
-- Direct to transcriptome - only as good as your gene models
+- Useful for quantifying gene expression of known genes and isoforms.
+- Fast and computationally cheap.- Sometimes called lightweight alignment.
+- Direct to transcriptome - only as good as your gene models.
 
 
 Mapping
@@ -182,7 +189,7 @@ Mapping
 
 Tiny cluster for doing mapping
 
-~ 15million reads on one core in 11 minutes
+~ 15 million reads on one core in 11 minutes
 
 <center>
 ![](mini_cluster.jpeg)
@@ -264,13 +271,10 @@ Quality Control - FASTQ
 
 <img src="./good_sequence_screen.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" height="300" style="display: block; margin: auto;" /><img src="./bad_sequence_screen.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" height="300" style="display: block; margin: auto;" />
 
-Quality Control - FASTQ
-========================================================
-
 Quality Control - BAMs
 ========================================================
 
-![](preseq.png)
+<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" height="600" style="display: block; margin: auto;" />
 
 [Preseq](http://smithlabresearch.org/software/preseq/) | 
 [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) |
@@ -281,20 +285,82 @@ Quality Control - BAMs
 ========================================================
 
 What can we look for specifically?
-- 3’ end bias:
+- Low read mapping rate
+- 3’/5’ end bias
 - rRNA and mtRNA
 - Duplicate Reads / Complexity
 
-3’ end bias
+Low read mapping rate
+========================================================
+Mapping rate guidelines: 
+  * >70% to the genome 
+  * >60% to the transcriptome
+
+Poor quality reads, contaminating sequences
+
+
+Low read mapping rate
+========================================================
+Mapping rate guidelines: 
+  * >70% to the genome 
+  * >60% to the transcriptome
+
+Poor quality reads, contaminating sequences
+
+Inappropriate alignment parameters, or reference gneome/transcriptome
+
+
+Low read mapping rate
+========================================================
+Mapping rate guidelines: 
+  * >70% to the genome 
+  * >60% to the transcriptome
+
+Poor quality reads, contaminating sequences
+
+Inappropriate alignment parameters, or reference gneome/transcriptome
+
+Low quality reference genome/transcriptome (less relevant for mouse/human)
+
+
+3’/5’ end bias
 ========================================================
 Can’t really produce a perfectly uniform coverage across entire transcripts.
-Introduced by library construction, especially if starting RNA is degraded, and then subjected to polyA enrichment. 
+
+Introduced by library construction, especially if starting RNA is degraded.
+
+**_3’ bias_** common when subjected to polyA enrichment.
+
+**_5’ bias_** common when subjected to rRNA depletion.
+
+Low exonic mapping rate
+========================================================
+low (<50%) of reads aligning to exons.
+
+high (>30%) of reads in introns or intergenic regions.
+
+high (>2%) of reads in rRNA
+
+Low exonic mapping rate
+========================================================
+low (<50%) of reads aligning to exons.
+
+high (>30%) of reads in introns or intergenic regions.
+
+<center>
+*genomic DNA contamination, pre-mRNA*
+</center>
+
+high (>2%) of reads in rRNA.
+
+<center>
+*unsuccessful ribo-depletion*
+</center>
 
 
 rRNA and mtRNA
 ========================================================
-The goal of most RNA-seq studies is to interrogate functional mRNA. However, structure RNAs such as Ribosomal RNA (rRNA), (or tRNAs) can constitute > 50% of total RNA in the cell, soaking up reads and lowering effective depth. These should be depleted in library preparation. 
-
+The goal of most RNA-seq studies is to interrogate functional mRNA. However, structure RNAs such as Ribosomal RNA (rRNA), (or tRNAs) can constitute > 50% of total RNA in the cell, soaking up reads and lowering effective depth. These should be depleted in library preparation.
 
 Duplicate Reads
 ========================================================
@@ -302,6 +368,33 @@ Two or more reads are assumed to be derived from the same nucleotide fragment an
 Typically, for paired-end read data (single-end data is also handled) these algorithms find the 5p coordinates and mapping orientations of each read pair while taking into account all clipping that has taking place as well as any gaps or jumps in the alignment. All read pairs sharing identical 5p coordinates and orientations are marked as duplicates except the "best" pair.
 
 There is a concern that duplicates may correspond to biased PCR amplification of particular fragments, however, for highly expressed or short genes, duplicates are expected even if there is no amplification bias. Removing them will reduce the dynamic range of expression estimates. Generally duplicates should therefore not be removed in RNA-seq analysis
+
+Duplicate Reads -- an Update
+========================================================
+
+<img src="./MEND.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="48%" height="24%" style="display: block; margin: auto;" />
+
+Duplicate Reads -- an Update
+========================================================
+<img src="./duplicate_fraction.jpeg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="24%" /><img src="./mend_diagram.jpeg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="48%" height="24%" />
+
+Library Complexity
+========================================================
+Preseq is a tool to help you design and optimize sequencing experiments by using population sampling models to infer properties of the population or the behavior under deeper sampling based upon a small initial sequencing experiment. 
+
+The estimates can then be used to examine the utility of further sequencing, optimize the sequencing depth, or to screen multiple libraries to avoid low complexity samples.
+
+Library Complexity
+========================================================
+The estimates can then be used to examine the utility of further sequencing, optimize the sequencing depth, or to screen multiple libraries to avoid low complexity samples.
+
+<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="48%" height="49%" />
+
+Library Complexity
+========================================================
+The estimates can then be used to examine the utility of further sequencing, optimize the sequencing depth, or to screen multiple libraries to avoid low complexity samples.
+
+<img src="./preseq_initial.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="48%" height="49%" /><img src="./preseq_observed.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="48%" height="49%" />
 
 Homework
 ========================================================
