@@ -61,11 +61,13 @@ if (sum(top) <= baseline * ngenes) {
   escore <- numeric(ngenes)
 
   ## iterate enrichment scores over the ranked list of genes:
+  running_sum <- 0
   for (i in 1:ngenes) {
     ## the expected number of genes changes with each iteration
     expected = baseline * i
-    ## ENRICMENT FUNCTION: 
-    escore[i] <- sum(ranked_list[1:i]) - expected
+    ## ENRICHMENT FUNCTION: 
+    running_sum <- running_sum + ranked_list[i]
+    escore[i] <- running_sum - expected
   }
   
   # visualize the results:
@@ -177,8 +179,8 @@ Fix the part of the code pertaining to the pvalue calculation by adding argument
 
 ```{r significance1, eval=FALSE}
 print(cutoff)
-print(min(which(escore==max(escore))))
-print(epval[min(which(escore==max(escore)))])
+print(min(which(escore == max(escore))))
+print(epval[min(which(escore == max(escore)))])
 ```
 
 ### 2.3 
@@ -205,10 +207,11 @@ Let's define a function to simulate a randomized dataset with the same general p
 
 ## calculates the maximum enrichment score of a random datasdet
 randscore <- function(ngenes, baseline) {
-  genes <- c(rep(1, round(baseline*ngenes, 0)), rep(0, ngenes-round(baseline*ngenes, 0)))
+  genes <- c(rep(1, round(baseline * ngenes, 0)), rep(0, ngenes-round(baseline*ngenes, 0)))
   ranked_random_geneset <- sample(genes, size = ngenes, replace = F)
   escore <- numeric(ngenes)
   running_sum <- 0
+  tally <- 0
   for (i in 1:ngenes) {
     expected = round(baseline * i, 0)
     running_sum <- running_sum + ranked_random_geneset[i]
