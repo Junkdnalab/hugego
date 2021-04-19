@@ -39,7 +39,7 @@ ngenes <- 2e4 # total number of genes
 cutoff <- round(ngenes / 10, 0) # number of top ranked genes with enrichment (default here 1/5 of genes)
 pathway_genes <- 50 # number of genes in pathway
 baseline <- pathway_genes / ngenes # the baseline is the fraction of total genes in pathway of interest, i.e. the expect frequency with no enrichment
-enrich <- baseline * 10 # probability of pathway genes in top list
+enrich <- baseline * 2 # probability of pathway genes in top list
 
 # simulate a dataset:
 if (enrich > 1) {warning("total enrichment probability is greater than 100%")}
@@ -60,15 +60,15 @@ if (sum(top) <= baseline * ngenes) {
   ## create a vector to store enrichment scores:
   escore <- numeric(ngenes)
 
-  ## iterate enrichment scores over the ranked list of genes:
-  running_sum <- 0
-  for (i in 1:ngenes) {
-    ## the expected number of genes changes with each iteration
-    expected = baseline * i
-    ## ENRICHMENT FUNCTION: 
-    running_sum <- running_sum + ranked_list[i]
-    escore[i] <- running_sum - expected
-  }
+  ## iterate enrichment scores over the ranked list of genes:      ###############
+  running_sum <- 0                                                 # Answer      #
+  for (i in 1:ngenes) {                                            # question 53 #
+    ## the expected number of genes changes with each iteration    # from this   #
+    expected = baseline * i                                        # block of    #
+    ## ENRICHMENT FUNCTION:                                        # code!       #
+    running_sum <- running_sum + ranked_list[i]                    #             #
+    escore[i] <- running_sum - expected                            #             #
+  }                                                                ###############
   
   # visualize the results:
   plot(x=1:ngenes, y=escore, type='l', ylim=c(-max(abs(escore)), max(abs(escore))))
@@ -77,9 +77,11 @@ if (sum(top) <= baseline * ngenes) {
 } else {print("COULD NOT EVAL: NUM HITS IN TOP LIST GREATER THAN PATHWAY")}
 ```
 
+## Exercise 1
+
 ### Question 1.1
 
-In your own words, describe how the enrichment function function works (lines 50-53). 
+In your own words, describe how the enrichment function function works. 
 
 <span style="color:#31a354"><i><b>
 answer here
@@ -171,7 +173,7 @@ if (sum(top) <= baseline * ngenes) {
 
 ### 2.1
 
-Alter the code block above with some parameters that appear to show clear enrichment from exercise 1.
+Alter the code block above with some parameters that appear to show clear enrichment from exercise 1.3.
 
 ### 2.2
 
